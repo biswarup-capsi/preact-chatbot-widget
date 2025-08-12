@@ -1,6 +1,5 @@
 import { Fragment, h, VNode } from 'preact';
 import { useState } from 'preact/hooks';
-// import './style.css';
 
 interface Props {
 }

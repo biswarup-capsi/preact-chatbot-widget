@@ -158,3 +158,44 @@ According to the Chatwoot developer documentation and related sources, the front
 | **First Render Performance** | Slightly slower initial render, but blazing fast updates over time ([lucamezzalira.com](https://lucamezzalira.com/2018/08/14/a-night-experimenting-with-lit-html/?utm_source=chatgpt.com)) | Generally faster on first render, may lag updates over time                                                                                                                                                                                                                                                |
 | **Interoperability**         | Full Web Components support—works anywhere                                                                                                                                                 | Requires compatibility wrapper or framework runtime                                                                                                                                                                                                                                                        |
 | **Reactivity / Signals**     | Built-in reactive properties                                                                                                                                                               | Preact supports fast signals but typically requires extra setup ([Stack Overflow](https://stackoverflow.com/questions/77405932/comparing-performance-react-hooks-with-optimization-vs-preact-signals?utm_source=chatgpt.com))                                                                              |
+
+Here’s how you can update your README to include **Svelte** at the end, highlighting the accessibility (`aria`), Shadow DOM isolation, and the features you’ve implemented in your chat widget:
+
+---
+
+## Svelte
+
+### Why Svelte Works Well for Embeddable Chat Widgets
+
+* **Reactive without boilerplate**
+  Svelte’s reactivity happens at compile time—no virtual DOM or runtime diffing needed. This means a faster, smaller widget bundle.
+
+* **Shadow DOM encapsulation**
+  Using `<svelte:options customElement={true}>`, the widget is compiled as a native Web Component with Shadow DOM—styles are fully isolated from the host page.
+
+* **Accessibility-friendly (`aria` support)**
+  The widget uses `aria-live`, `aria-label`, and proper `tabindex` attributes to ensure screen reader and keyboard accessibility.
+
+* **Lightweight & self-contained**
+  A single build file registers `<chat-widget>` globally, allowing drop-in embedding on any page without framework dependencies.
+
+* **Interactive features implemented**
+
+  * Floating chat icon with hover animations.
+  * Toggleable chat dialog with smooth UI positioning.
+  * Focus ring management using `:focus-visible` for mouse/keyboard accessibility.
+  * `all: initial` style reset inside Shadow DOM for predictable visuals.
+  * Asset handling (chat icon image) baked into the build.
+
+---
+
+**Example usage:**
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/biswarup-naha/preact-widget@master/dist/index.module.js"></script>
+
+<chat-widget></chat-widget>
+```
+
+✅ Loads anywhere—WordPress, static HTML, SPA, or legacy sites—without CSS conflicts.
+
